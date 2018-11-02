@@ -84,6 +84,14 @@ const store = new Vuex.Store({
     }, {
       price: 9999,
       place: "hongkong",
+    }],
+    nav: 0,//频道
+    navs: [{
+      title: "热门",
+      path: "hot"
+    }, {
+      title: "新鲜事",
+      path: "fresh"
     }]
   },
   // 修改公告栏
@@ -93,6 +101,9 @@ const store = new Vuex.Store({
     },
     setAge(state, data) {
       state.age = data;
+    },
+    setNav(state, data) {
+      state.nav = data;
     }
   },
   // 获取公告信息
@@ -101,7 +112,15 @@ const store = new Vuex.Store({
     getInformation: state => {
       // 把所有的房源信息
       return state
-    }
+    },
+    getNavs: state => {
+      // 把所有的房源信息
+      return state.navs
+    },
+    getNav: state => {
+      // 把所有的房源信息
+      return state.nav
+    },
   },
   // 汇总公告信息
   actions: {
@@ -110,6 +129,9 @@ const store = new Vuex.Store({
       // 可以在这里触发多个mutations
       context.commit('setAuthor', data)
       context.commit('setAge', data)
+    },
+    doneSetNav(context, data) {
+      context.commit('setNav', data)
     }
   }
 })

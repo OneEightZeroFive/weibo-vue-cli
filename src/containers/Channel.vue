@@ -1,7 +1,7 @@
 <template>
     <div style="margin-top: 84px">
         <div class="pannelwrap" style="padding-top: 0px; padding-bottom: 0px;">
-        <div v-if="channel===0" class="wb-item-wrap">
+        <div v-if="nav===0" class="wb-item-wrap">
                 <div class="wb-item">
                         <div class="card m-panel card9 f-weibo">
                                 <div class="card-wrap">
@@ -73,7 +73,7 @@
                         </div>
                 </div>
         </div>
-        <div v-if="channel===1" class="wb-item-wrap">
+        <div v-if="nav===1" class="wb-item-wrap">
                 <div class="wb-item">
                         <div class="card m-panel card9 f-weibo">
                                 <div class="card-wrap">
@@ -1386,16 +1386,17 @@
 <script>
 export default {
   data() {
-    return {
-      channel: 0
-    };
+    return {};
   },
   // 计算属性
-  computed:{
+  computed: {
     // 把vuex的信息获取回来放到information里面
-    information(){
+    information() {
       // 利用中介的getInformation把数据通过计算属性交给本组件的information里面存起来
-      return this.$store.getters.getInformation
+      return this.$store.getters.getInformation;
+    },
+    nav() {
+      return this.$store.getters.getNav;
     }
   },
   // 换场判断
@@ -1409,16 +1410,18 @@ export default {
   methods: {
     setChannel() {
       var path = this.$route.path;
+      var nav = 0;
       switch (path) {
         case "/home/hot":
-          this.channel = 0;
+          nav = 0;
           break;
         case "/home/fresh":
-          this.channel = 1;
+          nav = 1;
           break;
         default:
-          this.channel = 0;
+          nav = 0;
       }
+      this.$store.dispatch("doneSetNav", nav);
     }
   },
   // 进场判断

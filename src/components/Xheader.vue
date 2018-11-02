@@ -36,22 +36,31 @@
 export default {
     data(){
         return {
-            nav:0,
-            navs:[{
-                title:"热门",
-                path:"hot"
-            },{
-                title:"新鲜事",
-                path:"fresh"
-            }]
+            // nav:0,
+            // navs:[{
+            //     title:"热门",
+            //     path:"hot"
+            // },{
+            //     title:"新鲜事",
+            //     path:"fresh"
+            // }]
         }
     },
     methods:{
         toggleNav(nav){
-            this.nav = nav;
+            this.$store.dispatch("doneSetNav",nav);
+            //this.nav = nav;
             // 跳转路由
             this.$router.push({ name: this.navs[nav].path});
             this.$store.dispatch('doneSetAuthor','laoxie');
+        }
+    },
+    computed:{
+        nav(){
+            return this.$store.getters.getNav;
+        },
+        navs(){
+            return this.$store.getters.getNavs;
         }
     }
 }
