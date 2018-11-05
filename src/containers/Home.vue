@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Xheader />
+        <Xheader :name="xheaderName" />
         <router-view></router-view>
     </div>
 </template>
@@ -9,6 +9,11 @@ import Xheader from "../components/Xheader.vue"
 export default {
     components:{
         Xheader
+    },
+    data(){
+        return {
+            xheaderName:"home"
+        }
     }
 }
 </script>

@@ -4,8 +4,9 @@ import App from './App.vue'
 // 第三方模块
 var $ = require("jquery");
 window.$ = $;
-
-
+import axios from "axios";
+Vue.prototype.$axios = axios;
+Vue.prototype.$ = $;
 // vue-router
 //$("body").html("<p>hello world</p>");
 import VueRouter from 'vue-router';
@@ -17,10 +18,13 @@ Vue.use(VueRouter);
 
 // 一级路由
 import Home from "./containers/Home.vue";
-//import Search from "./containers/Search/Search.js";
+import Detail from "./containers/Detail.vue";
 import Search from "./containers/Search.vue";
+
+
 // 二级路由
 import Channel from "./containers/Channel.vue";
+import Tab from "./containers/Tab.vue";
 
 
 // 2. Define some routes
@@ -52,6 +56,27 @@ const routes = [{
     path: '/search',
     name: 'search',
     component: Search
+  },
+  {
+    path: '/detail/:id',
+    name: 'detail',
+    component: Detail,
+    children: [{
+        path: 'repost',
+        name: 'repost',
+        component: Tab
+      },
+      {
+        path: 'comment',
+        name: 'comment',
+        component: Tab
+      },
+      {
+        path: 'like',
+        name: 'like',
+        component: Tab
+      }
+    ]
   }
 ]
 
@@ -85,7 +110,7 @@ const store = new Vuex.Store({
       price: 9999,
       place: "hongkong",
     }],
-    nav: 0,//频道
+    nav: 0, //频道
     navs: [{
       title: "热门",
       path: "hot"

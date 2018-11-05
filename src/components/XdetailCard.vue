@@ -1,4 +1,5 @@
-<div>
+<template>
+    <div>
         <div class="card m-avatar-box lite-page-list">
                 <div class="card-wrap">
                         <div class="card-main">
@@ -33,3 +34,29 @@
                 </div>
         </div>
 </div>
+</template>
+<style scoped>
+@import url("../css/app.css");
+@import url("../css/base.css");
+@import url("../css/cards.css");
+
+.empty {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 102px 0 20px;
+  font-size: 0.875rem;
+  color: #929292 !important;
+  text-align: center;
+}
+.comment-content {
+  min-height: 15rem;
+  background-color: #fbfbfb;
+  position: relative;
+}
+.url-icon img {
+  width: 1em;
+  height: 1em;
+}
+</style>
+
