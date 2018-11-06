@@ -66,6 +66,9 @@ export default {
   // 进场判断
   mounted() {
     this.setChannel();
+    window.onscroll = function(e){
+      
+    }
     this.loadMore();
   },
   components: {
